@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('/admin', function () {
     return view('admin.index');
+    // return User::all()->roles->name;
 });
 
 Auth::routes();
