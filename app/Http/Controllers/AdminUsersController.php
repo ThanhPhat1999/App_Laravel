@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
 use App\Photo;
+use App\Http\Requests\UsersRequest;
 use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
@@ -45,6 +45,7 @@ class AdminUsersController extends Controller
         if($file = $request->file('photo_id'))
         {
             $name = time() . '_' . $file->getClientOriginalName();
+
             $file->move('images', $name);
 
             $photo = Photo::create(['path' => $name]);
@@ -76,7 +77,9 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit');
+        $users = User::editUserById($id);
+        $roles = Role::pluck('name', 'id')->all();
+        return view('admin.users.edit', compact('users', 'roles'));
     }
 
     /**

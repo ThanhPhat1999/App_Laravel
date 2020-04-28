@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'photo_id'
+        'name', 'email', 'password', 'role_id', 'photo_id',
     ];
 
     /**
@@ -45,5 +45,10 @@ class User extends Authenticatable
     public function photo()
     {
         return $this->belongsTo('App\Photo');
+    }
+
+    public static function editUserById($id)
+    {
+        return User::findOrFail($id);
     }
 }
