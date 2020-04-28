@@ -27,7 +27,7 @@ class UsersRequest extends FormRequest
             'name'      =>  'required',
             'email'     =>  'required',
             'role_id'   =>  'required',
-            'file'      =>  'required',
+            'photo_id'  =>  'required',
             'password'  =>  'required',
             'is_active' =>  'required'
         ];

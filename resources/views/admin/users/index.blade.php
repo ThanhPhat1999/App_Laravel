@@ -8,6 +8,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    {{-- <th>Image</th> --}}
                     <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
@@ -16,19 +17,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    @if ($users)
-                        @foreach ($users as $user)
+                @if ($users)
+                    @foreach ($users as $user)
+                        <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
+                            {{-- <td><img src="public/images/{{ $user->photo_id->path }}" alt=""></td> --}}
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role->name }}</td>
                             <td>{{ $user->is_active == 1 ? 'Active' : 'Not Active' }}</td>
                             <td>{{ $user->created_at->diffForHumans() }}</td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
-                        @endforeach
-                    @endif 
-                </tr>
+                        </tr>
+                    @endforeach
+                @endif 
             </tbody>
         </table>
     </div>
