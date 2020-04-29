@@ -42,10 +42,13 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          @yield('content')
-
+          <div class="row">
+            <div class="col-sm-12">
+          
+            <!-- Page Heading -->
+              @yield('content')
+          </div>
+          </div>
         </div>
         <!-- /.container-fluid -->
 
