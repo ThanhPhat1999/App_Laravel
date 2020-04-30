@@ -1,6 +1,4 @@
-
-
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <!-- 404 Error Text -->

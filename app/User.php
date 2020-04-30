@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,28 +14,23 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'photo_id', 'is_active'
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role_id', 'photo_id', 'is_active'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token',];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $casts = ['email_verified_at' => 'datetime',];
 
+    // Start Relationship
     public function role()
     {
         return $this->belongsTo('App\Role');
@@ -46,6 +40,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Photo');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    } //End Relationship
 
     public static function editUserById($id)
     {
@@ -57,7 +56,6 @@ class User extends Authenticatable
         if($this->role->name === 'Administrator' && $this->is_active === 1)
         {
             return true;
-        }
-        return false;
+        } return false;
     }
 }
