@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->integer('user_id')->index()->unsigned();
             $table->integer('photo_id')->index()->unsigned();
-            $table->integer('cat_id')->index()->unsigned();
+            $table->integer('category_id')->index()->unsigned();
             $table->string('title');
             $table->string('content');
             $table->timestamps();

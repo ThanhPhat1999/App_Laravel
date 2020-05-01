@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['user_id', 'photo_id', 'cat_id', 'title', 'content'];
+    protected $fillable = ['user_id', 'photo_id', 'category_id', 'title', 'content'];
 
     // Start Relationship
     public function user()

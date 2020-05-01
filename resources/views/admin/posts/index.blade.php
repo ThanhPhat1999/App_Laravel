@@ -25,12 +25,12 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->category ? $post->category->name : "Uncategorized" }}</td>
-                            <td><img height="50" src="{{ $post->photo ? $post->photo->path : "http://placehold.it/400x400"}}" alt=""></td>
+                            <td><img height="30" src="{{ $post->photo ? $post->photo->path : "http://placehold.it/400x400"}}" alt=""></td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>{{ $post->updated_at->diffForHumans() }}</td>
-                            <td><a href="">Edit</a></td>
+                            <td><a href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
                             <td><a href="">Delete</a></td>
                         </tr>
                     @endforeach

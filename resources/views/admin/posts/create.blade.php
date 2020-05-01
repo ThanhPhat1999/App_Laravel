@@ -8,8 +8,8 @@
             {!! Form::text('title', null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('cat_id', 'Category:') !!}
-            {!! Form::select('cat_id', ['' => 'Choose Options'] + $categories, null, ['class' => 'form-control']) !!}
+            {!! Form::label('category_id', 'Category:') !!}
+            {!! Form::select('category_id', ['' => 'Choose Options'] + $categories, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('photo_id', 'Image:') !!}
