@@ -24,5 +24,11 @@
             {!! Form::submit('Edit Post', ['class' => 'btn btn-warning']) !!}
         </div>
     {!! Form::close() !!}
+
+    {!! Form::open(['method' => 'DELETE', 'action' =>['AdminPostsController@destroy', $post->id]]) !!}
+        <div class="form-group">
+            {!! Form::submit('Delete Post', ['class' => 'btn btn-danger']) !!}
+        </div>
+    {!! Form::close() !!}
     @include('admin.includes.form_error')
 @endsection

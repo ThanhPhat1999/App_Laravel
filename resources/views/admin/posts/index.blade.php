@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if (session()->has('delete_message'))
+        <p class="bg-danger text-white">{{ session('delete_message') }}</p>
+    @endif
     <h1 class="h3 mb-4 text-gray-800 text-center">Welcome to Posts</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -27,11 +30,11 @@
                             <td>{{ $post->category ? $post->category->name : "Uncategorized" }}</td>
                             <td><img height="30" src="{{ $post->photo ? $post->photo->path : "http://placehold.it/400x400"}}" alt=""></td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->content }}</td>
+                            <td>{{ Str::limit($post->content, 15) }}</td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>{{ $post->updated_at->diffForHumans() }}</td>
                             <td><a href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
-                            <td><a href="">Delete</a></td>
+                            <td><a href="{{ route('posts.edit', $post->id) }}">Delete</a></td>
                         </tr>
                     @endforeach
                 @endif
