@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+<h1 class="h3 mb-4 text-gray-800 text-center">Welcome to Categories</h1>
     <div class="row">
+        
         <div class="col-sm-6">
             {!! Form::open(['method' => 'POST', 'action' => 'AdminCategoriesController@store']) !!}
             <div class="form-group">

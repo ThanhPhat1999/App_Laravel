@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    <h1 class="h3 mb-4 text-gray-800 text-center">Edit Category</h1>
     <div class="row">
         <div class="col-sm-6">
             {!! Form::model($category, ['method' => 'PATCH', 'action' => ['AdminCategoriesController@update', $category->id]]) !!}
