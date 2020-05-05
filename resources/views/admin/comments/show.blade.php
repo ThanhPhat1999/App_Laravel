@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800 text-center">Welcome to Comments</h1>
+    <h1 class="h3 mb-4 text-gray-800 text-center">Post Comments</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
@@ -50,7 +50,6 @@
                             </td>
                         </tr>
                     @endforeach
-                @else
                     
                 @endif
             </tbody>

@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/post/{id}', 'AdminPostsController@post')->name('post.blog');
+Route::get('/post/{id}', 'AdminPostsController@getPost')->name('post.blog');
 
 Route::group(['middleware' => 'admin'], function () {
 
@@ -40,3 +40,4 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('/admin/comment/replies', 'CommentRepliesController');
 }); 
+

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use App\Photo;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPostsController extends Controller
@@ -132,10 +133,12 @@ class AdminPostsController extends Controller
         return redirect('admin/posts');
     }
 
-    public function post($id)
+    public function getPost($id)
     {
         $post = Post::findOrFail($id);
 
-        return view('blog-post', compact('post'));
+        $comments = $post->comments()->where('is_active', 1)->orderBy('id', 'DESC')->get();
+
+        return view('blog-post', compact('post', 'comments'));
     }
 }
