@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostsCreateRequest;
 use Illuminate\Http\Request;
-use App\Post;
+
 use App\Category;
 use App\Photo;
 use App\Comment;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPostsController extends Controller
@@ -19,7 +20,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -133,12 +134,12 @@ class AdminPostsController extends Controller
         return redirect('admin/posts');
     }
 
-    public function getPost($id)
+    public function getPost($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
 
         $comments = $post->comments()->where('is_active', 1)->orderBy('id', 'DESC')->get();
-
+        
         return view('blog-post', compact('post', 'comments'));
     }
 }

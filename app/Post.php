@@ -3,10 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Post extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
+
+
     protected $fillable = ['user_id', 'photo_id', 'category_id', 'title', 'content'];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source'        => 'title',
+                'onUpdate'      => true,
+            ]
+        ];
+    }
 
     // Start Relationship
     public function user()

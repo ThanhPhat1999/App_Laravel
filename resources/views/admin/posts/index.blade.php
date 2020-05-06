@@ -17,6 +17,7 @@
                     <th>Content</th>
                     <th>Created</th>
                     <th>Updated</th>
+                    <th>View Post</th>
                     <th>View Comment</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -34,6 +35,7 @@
                             <td>{{ Str::limit($post->content, 15) }}</td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>{{ $post->updated_at->diffForHumans() }}</td>
+                            <td><a href="{{ route('post.blog', $post->slug) }}">View</a></td>
                             <td><a href="{{ route('comments.show', $post->id) }}">View Comment</a></td>
                             <td><a href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
                             <td><a href="{{ route('posts.edit', $post->id) }}">Delete</a></td>
@@ -42,5 +44,10 @@
                 @endif
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-sm-6 offset-sm-5">
+                {{ $posts->render() }}
+            </div>
+        </div>
     </div>
 @endsection

@@ -25,7 +25,9 @@ Route::get('/post/{id}', 'AdminPostsController@getPost')->name('post.blog');
 Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/admin', function () {
+
         return view('admin.index');
+
     })->name('admin.index');
 
     Route::resource('/admin/users', 'AdminUsersController');
@@ -38,6 +40,11 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('/admin/comments', 'PostCommentsController');
 
-    Route::resource('/admin/comment/replies', 'CommentRepliesController');
+    Route::resource('/admin/comments/replies', 'CommentRepliesController');
 }); 
 
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/comment/reply', 'CommentRepliesController@createReply');
+
+});

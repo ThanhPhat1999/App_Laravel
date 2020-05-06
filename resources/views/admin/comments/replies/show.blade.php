@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800 text-center">Welcome to Comments</h1>
+    <h1 class="h3 mb-4 text-gray-800 text-center">Comment Replies</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
@@ -11,31 +11,29 @@
                     <th>Email</th>
                     <th>Content</th>
                     <th>View Post</th>
-                    <th>View Replies</th>
                     <th>Status</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                @if (count($comments) > 0)
-                    @foreach ($comments as $comment)
+                @if (count($replies) > 0)
+                    @foreach ($replies as $reply)
                         <tr>
-                            <td>{{ $comment->id }}</td>
-                            <td>{{ $comment->author }}</td>
-                            <td>{{ $comment->email }}</td>
-                            <td>{{ $comment->content }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('post.blog', $comment->post->id) }}">View</a></td>
-                            <td><a class="btn btn-success" href="{{ route('replies.show', $comment->id) }}">Replies</a></td>
+                            <td>{{ $reply->id }}</td>
+                            <td>{{ $reply->author }}</td>
+                            <td>{{ $reply->email }}</td>
+                            <td>{{ $reply->content }}</td>
+                            <td><a class="btn btn-primary" href="{{ route('post.blog', $reply->comment->post->id) }}">View Post</a></td>
                             <td>
-                                @if ($comment->is_active === 1)
-                                    {!! Form::open(['method' => 'PATCH', 'action' => ['PostCommentsController@update', $comment->id]]) !!}
+                                @if ($reply->is_active === 1)
+                                    {!! Form::open(['method' => 'PATCH', 'action' => ['CommentRepliesController@update', $reply->id]]) !!}
                                         <input type="hidden" name="is_active" value="0">
                                         <div class="form-group">
                                             {!! Form::submit('Unapproved', ['class' => 'btn btn-secondary col-sm-10']) !!}
                                         </div>
                                     {!! Form::close() !!}
                                 @else
-                                    {!! Form::open(['method' => 'PATCH', 'action' => ['PostCommentsController@update', $comment->id]]) !!}
+                                    {!! Form::open(['method' => 'PATCH', 'action' => ['CommentRepliesController@update', $reply->id]]) !!}
                                         <input type="hidden" name="is_active" value="1">
                                         <div class="form-group">
                                             {!! Form::submit('Approved', ['class' => 'btn btn-info col-sm-10']) !!}
@@ -44,7 +42,7 @@
                                 @endif
                             </td>
                             <td>
-                                {!! Form::open(['method' => 'DELETE', 'action' => ['PostCommentsController@destroy', $comment->id]]) !!}
+                                {!! Form::open(['method' => 'DELETE', 'action' => ['CommentRepliesController@destroy', $reply->id]]) !!}
                                     <div class="form-group">
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger col-sm-10']) !!}
                                     </div>
@@ -52,8 +50,6 @@
                             </td>
                         </tr>
                     @endforeach
-                @else
-                    
                 @endif
             </tbody>
         </table>
