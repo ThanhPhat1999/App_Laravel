@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
+use PhpParser\Node\Stmt\Switch_;
 
 class AdminMediasController extends Controller
 {
@@ -31,14 +32,34 @@ class AdminMediasController extends Controller
 
     }
 
-    public function destroy($id)
+    public function deleteMedia(Request $request)
     {
-        $photo = Photo::findOrFail($id);
+        if(isset($request->delete_single))
+        {
+            $photo = Photo::findOrFail($request->photo_id);
 
-        unlink(public_path() . $photo->path);
+            unlink(public_path() . $photo->path);
+    
+            $photo->delete();
 
-        $photo->delete();
+            return redirect()->back();
+        }
+        else if (!empty($request->bulkOptions) || !empty($request->checkBoxArray)) {
+            $photos = Photo::findOrFail($request->checkBoxArray);
 
-        return redirect('/admin/media');
+            foreach ($photos as $photo) {
+
+                $bulkOptions = $request->bulkOptions;
+
+                switch ($bulkOptions)
+                {
+                    case 'delete':
+                        unlink(public_path() . $photo->path);
+                        $photo->delete();
+                        break;
+                }
+            }
+            return redirect()->back();
+        }
     }
 }

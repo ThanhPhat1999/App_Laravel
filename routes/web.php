@@ -38,6 +38,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('/admin/media', 'AdminMediasController');
 
+    Route::delete('/delete/media', 'AdminMediasController@deleteMedia');
+
     Route::resource('/admin/comments', 'PostCommentsController');
 
     Route::resource('/admin/comments/replies', 'CommentRepliesController');
