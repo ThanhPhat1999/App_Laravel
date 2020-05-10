@@ -14,7 +14,6 @@
                     <th>Category</th>
                     <th>Image</th>
                     <th>Title</th>
-                    <th>Content</th>
                     <th>Created</th>
                     <th>Updated</th>
                     <th>View Post</th>
@@ -30,9 +29,9 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->category ? $post->category->name : "Uncategorized" }}</td>
-                            <td><img height="30" src="{{ $post->photo ? $post->photo->path : "http://placehold.it/400x400"}}" alt=""></td>
+                            <td><img height="30" src="{{ $post->photo ? $post->photo->path : "http://placehold.it/900x300"}}" alt=""></td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ Str::limit($post->content, 15) }}</td>
+                            {{-- <td>{{ Str::limit($post->content, 15) }}</td> --}}
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>{{ $post->updated_at->diffForHumans() }}</td>
                             <td><a href="{{ route('post.blog', $post->slug) }}">View</a></td>

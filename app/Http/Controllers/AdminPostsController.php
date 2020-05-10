@@ -138,8 +138,10 @@ class AdminPostsController extends Controller
     {
         $post = Post::findBySlugOrFail($slug);
 
+        $categories = Category::all();
+
         $comments = $post->comments()->where('is_active', 1)->orderBy('id', 'DESC')->get();
         
-        return view('blog-post', compact('post', 'comments'));
+        return view('client.blog-post', compact('post', 'comments', 'categories'));
     }
 }

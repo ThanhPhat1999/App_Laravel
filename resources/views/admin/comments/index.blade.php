@@ -24,7 +24,7 @@
                             <td>{{ $comment->author }}</td>
                             <td>{{ $comment->email }}</td>
                             <td>{{ $comment->content }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('post.blog', $comment->post->id) }}">View</a></td>
+                            <td><a class="btn btn-primary" href="{{ route('post.blog', $comment->post->slug) }}">View</a></td>
                             <td><a class="btn btn-success" href="{{ route('replies.show', $comment->id) }}">Replies</a></td>
                             <td>
                                 @if ($comment->is_active === 1)
