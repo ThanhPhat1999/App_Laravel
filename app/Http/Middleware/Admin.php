@@ -23,6 +23,6 @@ class Admin
                 return $next($request);
             }
         }
-        return redirect('/errors/404');
+        return redirect('/login');
     }
 }

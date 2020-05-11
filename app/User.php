@@ -66,4 +66,9 @@ class User extends Authenticatable
 
         return "http://www.gravatar.com/avatar/$hash";
     }
+
+    public function photoPlaceholder()
+    {
+        return "http://placehold.it/60x60";
+    }
 }

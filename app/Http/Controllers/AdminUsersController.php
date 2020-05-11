@@ -7,6 +7,7 @@ use App\User;
 use App\Photo;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
 {

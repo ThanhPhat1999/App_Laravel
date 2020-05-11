@@ -56,7 +56,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website {{ now()->format('Y') }}</p>
+                    <p>Copyright &copy; Your Website {{ now()->year }}</p>
                 </div>
             </div>
             <!-- /.row -->
